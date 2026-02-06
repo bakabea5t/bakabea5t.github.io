@@ -1,0 +1,16 @@
+{
+  "title": "Post-1",
+  "slug": "post-1",
+  "categories": ["APIs", "Design"],
+  "date": "2021-07-17T03:37:41.366Z",
+  "author": "John Doe",
+  "previewImage": "../assets/img/work/work-2.jpg",
+  "link": "posts/post-1.html",
+
+  "content": "This is the first paragraph. [IMAGE] Here is some more text after the image. [IMAGE] Conclusion of the post.",
+  "images": [
+    "../assets/img/post/post-1-feature.jpg",
+    "../assets/img/post/post-1-img1.jpg",
+    "../assets/img/post/post-1-img2.jpg"
+  ]
+}
