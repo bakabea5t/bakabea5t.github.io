@@ -8,12 +8,38 @@ let navigationHistory = []; // Track navigation history for back button
 // Load posts data
 async function loadPosts() {
     try {
-        const response = await fetch('posts.json');
-        posts = await response.json();
+        // First try loading from /posts/index.json
+        const response = await fetch('posts/index.json');
+        const postIndex = await response.json();
+        
+        // Load individual post files
+        posts = await Promise.all(
+            postIndex.map(postMeta => 
+                fetch(`posts/${postMeta.id}.json`)
+                    .then(r => r.json())
+                    .catch(err => {
+                        console.warn(`Failed to load post ${postMeta.id}:`, err);
+                        return null;
+                    })
+            )
+        );
+        
+        // Filter out failed loads and sort by date
+        posts = posts.filter(p => p !== null).sort((a, b) => new Date(b.date) - new Date(a.date));
+        
         return posts;
     } catch (error) {
-        console.error('Error loading posts:', error);
-        return [];
+        console.error('Error loading posts from /posts/:',  error);
+        
+        // Fallback: try loading from root posts.json (legacy)
+        try {
+            const fallbackResponse = await fetch('posts.json');
+            posts = await fallbackResponse.json();
+            return posts;
+        } catch (fallbackError) {
+            console.error('Error loading fallback posts.json:', fallbackError);
+            return [];
+        }
     }
 }
 
@@ -229,14 +255,40 @@ function renderPostDetail(container, postId) {
         return;
     }
 
+    // Create post navigation
     container.innerHTML = `
         <div class="post-navigation">
             <button onclick="goBack()" class="back-button">&larr; Back</button>
         </div>
+        <div id="post-container"></div>
+    `;
+
+    // Use the PostRenderer to render the post content
+    if (window.postRenderer) {
+        window.postRenderer.renderPost(
+            document.getElementById('post-container'),
+            post
+        );
+    } else {
+        // Fallback rendering if postRenderer is not loaded
+        console.warn('PostRenderer not loaded, using fallback rendering');
+        renderPostDetailFallback(document.getElementById('post-container'), post);
+    }
+}
+
+// Fallback rendering if PostRenderer is not available
+function renderPostDetailFallback(container, post) {
+    container.innerHTML = `
         <article>
-            <h2>${post.title}</h2>
-            <time datetime="${post.date}">${new Date(post.date).toLocaleDateString()}</time>
-            <div class="tags">${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
+            <h1>${post.title}</h1>
+            <div class="post-meta">
+                <time datetime="${post.date}">${new Date(post.date).toLocaleDateString()}</time>
+                ${post.tags && post.tags.length > 0 ? `
+                    <div class="post-tags">
+                        ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                ` : ''}
+            </div>
             <div class="post-content">${post.content}</div>
         </article>
     `;
@@ -248,7 +300,7 @@ async function displayFeaturedPosts() {
     const container = document.getElementById('featured-posts-container');
     if (!container) return;
 
-    const featuredPosts = posts.filter(p => p.pinned).slice(0, 3);
+    const featuredPosts = posts.filter(p => p.featured || p.pinned).slice(0, 3);
 
     container.innerHTML = featuredPosts.map(post => `
         <article 
@@ -258,11 +310,14 @@ async function displayFeaturedPosts() {
             onclick="navigateTo('posts', '${post.id}')"
             onkeydown="if (event.key === 'Enter') navigateTo('posts', '${post.id}')"
         >
+            ${post.images && post.images.thumbnail ? `
+                <img src="${post.images.thumbnail}" alt="${post.title}" class="post-card-image">
+            ` : ''}
             <h4>${post.title}</h4>
             <time datetime="${post.date}">
                 ${new Date(post.date).toLocaleDateString()}
             </time>
-            <p>${post.description}</p>
+            <p>${post.shortDescription}</p>
             <div class="tags">
                 ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
             </div>
@@ -277,15 +332,38 @@ function displayAllPosts(view = 'grid') {
     if (!container) return;
 
     container.className = `posts-${view}`;
-    container.innerHTML = posts.map(post => `
-        <article class="post-item">
-            <h3><a href="#posts/${post.id}" onclick="navigateTo('posts', '${post.id}')">${post.title}</a></h3>
-            <time datetime="${post.date}">${new Date(post.date).toLocaleDateString()}</time>
-            <p>${post.description}</p>
-            <div class="tags">${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
+    container.innerHTML = posts.map(post => {
+        // Support both old format (post.images.gallery) and new format (post.gallery or post.image)
+        let imageUrl = null;
+        if (post.image) {
+            imageUrl = post.image;
+        } else if (post.images && post.images.gallery && post.images.gallery.length > 0) {
+            imageUrl = post.images.gallery[0].src;
+        } else if (post.gallery && post.gallery.length > 0) {
+            imageUrl = post.gallery[0].src;
+        }
+
+        // Support both formats for description
+        const description = post.shortDescription || '';
+
+        return `
+        <article class="post-item" role="link" tabindex="0" onclick="navigateTo('posts', '${post.id}')" onkeydown="if(event.key === 'Enter') navigateTo('posts', '${post.id}')">
+            ${imageUrl ? `
+                <div class="post-item-image-square">
+                    <img src="${imageUrl}" alt="${post.title}" />
+                </div>
+            ` : ''}
+            <div class="post-item-content">
+                <h3><a href="#posts/${post.id}" onclick="event.stopPropagation(); navigateTo('posts', '${post.id}')">${post.title}</a></h3>
+                <time datetime="${post.date}">${new Date(post.date).toLocaleDateString()}</time>
+                ${description ? `<p>${description}</p>` : ''}
+                ${post.tags ? `<div class="tags">${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>` : ''}
+            </div>
         </article>
-    `).join('');
+    `;
+    }).join('');
 }
+
 
 // Setup view toggle
 function setupViewToggle() {
