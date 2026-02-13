@@ -1,9 +1,10 @@
 # Author tool - local development only
 /author/
 
-# Post generation scripts and helpers - local only
-/scripts/
+# AI documentation - local only
 /AI_mds/
+
+# Dependencies - local only
 package.json
 package-lock.json
 
