@@ -1,0 +1,272 @@
+{
+  "id": "example-advanced-post",
+  "title": "Advanced Post Template - All Features Showcase",
+  "date": "2026-02-10",
+  "shortDescription": "A comprehensive example showcasing all available post formatting options including two-column layouts, callouts, code blocks, and more.",
+  "tags": ["tutorial", "example", "template"],
+  "featured": false,
+  "image": "/img/posts/example-advanced-post/banner.jpg",
+  "content": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Welcome to this comprehensive guide! This post demonstrates all available content block types you can use to create rich, engaging content."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Basic Text Formatting"
+      },
+      {
+        "type": "paragraph",
+        "text": "This is a standard paragraph. You can use paragraphs to write regular text content. They provide clean, readable text with proper spacing."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Quotes and Citations"
+      },
+      {
+        "type": "blockquote",
+        "text": "Blockquotes are perfect for highlighting important statements, citations, or memorable quotes. They stand out with a distinctive left border."
+      },
+      {
+        "type": "divider"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Lists and Organization"
+      },
+      {
+        "type": "paragraph",
+        "text": "Use lists to organize information clearly:"
+      },
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          "Unordered lists are great for non-sequential items",
+          "They help break down information into digestible chunks",
+          "Each item gets a bullet point automatically",
+          "Perfect for features, benefits, or key points"
+        ]
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          "Ordered lists work well for step-by-step instructions",
+          "Numbers help readers follow a sequence",
+          "Great for tutorials and guides",
+          "Maintains clear progression"
+        ]
+      },
+      {
+        "type": "divider"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Callout Boxes"
+      },
+      {
+        "type": "paragraph",
+        "text": "Callout boxes help highlight important information. Here are all available types:"
+      },
+      {
+        "type": "callout",
+        "calloutType": "info",
+        "title": "Information",
+        "text": "Use info callouts for helpful tips, additional context, or general information that complements your main content."
+      },
+      {
+        "type": "callout",
+        "calloutType": "success",
+        "title": "Success",
+        "text": "Success callouts are perfect for highlighting positive outcomes, achievements, or best practices."
+      },
+      {
+        "type": "callout",
+        "calloutType": "warning",
+        "title": "Warning",
+        "text": "Warning callouts draw attention to potential issues, important caveats, or things to watch out for."
+      },
+      {
+        "type": "callout",
+        "calloutType": "error",
+        "title": "Error",
+        "text": "Error callouts are ideal for critical warnings, common mistakes to avoid, or serious issues that need attention."
+      },
+      {
+        "type": "divider"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Two-Column Layouts"
+      },
+      {
+        "type": "paragraph",
+        "text": "Create side-by-side comparisons or present related information in parallel:"
+      },
+      {
+        "type": "two-column",
+        "left": "Left Column Content: Perfect for comparisons, pros vs cons, or presenting two related concepts side by side. This helps readers compare information easily.",
+        "right": "Right Column Content: The two-column layout automatically stacks on mobile devices for better readability. Use this for before/after, old/new, or any parallel information."
+      },
+      {
+        "type": "divider"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Code Blocks"
+      },
+      {
+        "type": "paragraph",
+        "text": "Display code snippets with syntax highlighting:"
+      },
+      {
+        "type": "code",
+        "language": "javascript",
+        "text": "// Example JavaScript code\nfunction greet(name) {\n    return `Hello, ${name}!`;\n}\n\nconst message = greet('World');\nconsole.log(message);"
+      },
+      {
+        "type": "code",
+        "language": "python",
+        "text": "# Example Python code\ndef calculate_fibonacci(n):\n    if n <= 1:\n        return n\n    return calculate_fibonacci(n-1) + calculate_fibonacci(n-2)\n\nresult = calculate_fibonacci(10)\nprint(f\"Fibonacci(10) = {result}\")"
+      },
+      {
+        "type": "divider"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Images in Content"
+      },
+      {
+        "type": "paragraph",
+        "text": "You can embed images directly in your content flow (requires image to be in gallery):"
+      },
+      {
+        "type": "image",
+        "imageId": "img-1",
+        "caption": "Images can be inserted inline with optional captions"
+      },
+      {
+        "type": "divider"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "External Links"
+      },
+      {
+        "type": "link",
+        "text": "Check out the full documentation",
+        "href": "https://example.com/docs"
+      },
+      {
+        "type": "divider"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Embedded Videos"
+      },
+      {
+        "type": "paragraph",
+        "text": "Embed YouTube videos or other iframe content:"
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "title": "Example Video",
+        "caption": "Videos are fully responsive and maintain aspect ratio"
+      },
+      {
+        "type": "divider"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Combining Elements"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mix and match these elements to create engaging, informative posts. Here's a practical example:"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Tutorial: Setting Up Your Project"
+      },
+      {
+        "type": "callout",
+        "calloutType": "info",
+        "title": "Prerequisites",
+        "text": "Make sure you have Node.js 18+ and npm installed before starting."
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          "Clone the repository from GitHub",
+          "Install dependencies with npm install",
+          "Configure your environment variables",
+          "Run the development server"
+        ]
+      },
+      {
+        "type": "code",
+        "language": "bash",
+        "text": "# Clone and setup\ngit clone https://github.com/username/project.git\ncd project\nnpm install\nnpm run dev"
+      },
+      {
+        "type": "callout",
+        "calloutType": "success",
+        "title": "Success!",
+        "text": "Your development server should now be running on http://localhost:3000"
+      },
+      {
+        "type": "divider"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Conclusion"
+      },
+      {
+        "type": "paragraph",
+        "text": "This template showcases all available content blocks. Use them to create rich, engaging posts that are both informative and visually appealing. The gallery section below demonstrates how images are displayed."
+      }
+    ]
+  },
+  "gallery": [
+    {
+      "id": "img-1",
+      "src": "/img/posts/example-advanced-post/image1.jpg",
+      "alt": "First example image",
+      "caption": "Example image demonstrating gallery functionality"
+    },
+    {
+      "id": "img-2",
+      "src": "/img/posts/example-advanced-post/image2.jpg",
+      "alt": "Second example image",
+      "caption": "Images display in a responsive grid"
+    },
+    {
+      "id": "img-3",
+      "src": "/img/posts/example-advanced-post/image3.jpg",
+      "alt": "Third example image",
+      "caption": "Click any image to open the lightbox viewer"
+    },
+    {
+      "id": "img-4",
+      "src": "/img/posts/example-advanced-post/image4.jpg",
+      "alt": "Fourth example image",
+      "caption": "Additional images show 'View All' button"
+    }
+  ]
+}

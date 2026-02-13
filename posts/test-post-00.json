@@ -1,0 +1,53 @@
+{
+  "id": "test-post-00",
+  "title": "Test Post Zero Zero",
+  "date": "2026-02-12",
+  "shortDescription": "First test with new post generator",
+  "tags": [
+    "web-development",
+    "tutorial",
+    "vibe-coding"
+  ],
+  "featured": true,
+  "content": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "This is a simple test post to verify the post generation system works correctly. Everything should render properly in the preview."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Testing Block Types"
+      },
+      {
+        "type": "paragraph",
+        "text": "This post includes several basic content blocks to ensure proper rendering."
+      },
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          "Paragraphs render correctly",
+          "Headings display properly",
+          "Code blocks work",
+          "Lists format nicely"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Code Example"
+      },
+      {
+        "type": "code",
+        "language": "javascript",
+        "text": "function hello() {\n  console.log('Hello World');\n  return 'Test successful!';\n}"
+      },
+      {
+        "type": "blockquote",
+        "text": "This is a test post demonstrating the exact preview functionality of the editor."
+      }
+    ]
+  }
+}

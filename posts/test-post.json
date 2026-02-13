@@ -1,0 +1,22 @@
+{
+  "id": "test-post",
+  "title": "Test Post",
+  "author": "Jaden Vaught",
+  "date": "2026-02-05",
+  "tags": ["javascript", "web-dev"],
+  "image": "/img/posts/test-post/I_love_you.png",
+  "shortDescription": "Building a portfolio website to showcase projects and document my growth as a developer",
+  "content": "<h2>Introduction</h2><p>I was inspired by other peers who had created and generated personalized web pages to show off their skills and personal projects. Seeing their work motivated me to pursue the same idea and create something that could represent both my technical abilities and my growth as a developer.</p><p>Initially, I worked on a prototype using a template I had found online. At the time, I was between graduating and starting my full-time role at cBEYODATA, which gave me the opportunity to experiment and explore different design ideas without a strict deadline.</p><h2>Early Development</h2><p>Once I started working full time, I continued to make progress on the portfolio, but eventually I transitioned to another project that was far more intense. Because of that shift in priorities, this portfolio project was pushed back for roughly nine months.</p><p>When I finally returned to it, I decided to scrap most of what I had built using the template. Instead, I chose to apply the knowledge I had gained over the previous nine months and redesign the site to be simpler, cleaner, and more component-based.</p><h2>Design Approach</h2><p>When laying out the structure of the webpage, I focused heavily on the landing page experience. The goal was to create a simple landing zone that clearly presented my information, followed by a career timeline, and finally a post section.</p><p>The post section acts like a lightweight blog where I can document projects, share updates, and highlight work that strengthens my portfolio over time.</p><h2>Implementation Details</h2><p>From a technical standpoint, <code>app.js</code> serves as the main landing page for the site. By utilizing a dedicated <code>posts</code> folder, I am able to call <code>postRender.js</code> to dynamically load and display posts throughout the application.</p><p>This approach keeps the site modular and makes it easy to add new content without modifying the core layout.</p><h2>Takeaways</h2><ul><li>Building from templates can be useful early on, but rewriting from scratch helped solidify my understanding.</li><li>Keeping the design simple made the site easier to scale and maintain.</li><li>Breaking the site into components allowed for cleaner organization and future growth.</li></ul>",
+  "gallery": [
+    {
+      "src": "/img/posts/test-post/I_love_you.png",
+      "alt": "Image 1",
+      "caption": "First image"
+    },
+    {
+      "src": "/img/posts/test-post/SWOLE.jpg",
+      "alt": "Image 2",
+      "caption": "Second image"
+    }
+  ]
+}

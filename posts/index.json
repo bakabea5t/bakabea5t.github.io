@@ -1,0 +1,42 @@
+[
+  {
+    "id": "test-post-00",
+    "title": "Test Post Zero Zero",
+    "date": "2026-02-12",
+    "tags": [
+      "web-development",
+      "tutorial",
+      "vibe-coding"
+    ]
+  },
+  {
+    "id": "example-advanced-post",
+    "title": "Advanced Post Template - All Features Showcase",
+    "date": "2026-02-10",
+    "tags": [
+      "tutorial",
+      "example",
+      "template"
+    ]
+  },
+  {
+    "id": "test-post",
+    "title": "Test Post",
+    "date": "2026-02-05",
+    "tags": [
+      "javascript",
+      "web-dev"
+    ]
+  },
+  {
+    "id": "building-real-time-chat-app",
+    "title": "Building a Real-Time Chat Application",
+    "date": "2025-02-05",
+    "tags": [
+      "javascript",
+      "websockets",
+      "node.js",
+      "tutorial"
+    ]
+  }
+]

@@ -1,0 +1,179 @@
+{
+  "id": "building-real-time-chat-app",
+  "title": "Building a Real-Time Chat Application",
+  "shortDescription": "Exploring WebSocket technology and event-driven architecture to create a scalable chat platform",
+  "date": "2025-02-05",
+  "tags": ["javascript", "websockets", "node.js", "tutorial"],
+  "featured": true,
+  "pinned": true,
+  
+  "images": {
+    "thumbnail": "img/posts/building-real-time-chat-app/screenshot-1.jpg",
+    "gallery": [
+      {
+        "id": "img-0",
+        "src": "img/posts/building-real-time-chat-app/screenshot-1.jpg",
+        "alt": "Chat application login screen",
+        "caption": "Login screen with user authentication"
+      },
+      {
+        "id": "img-1",
+        "src": "img/posts/building-real-time-chat-app/screenshot-2.jpg",
+        "alt": "Main chat interface",
+        "caption": "Main chat interface with message history"
+      },
+      {
+        "id": "img-2",
+        "src": "img/posts/building-real-time-chat-app/architecture.jpg",
+        "alt": "System architecture diagram",
+        "caption": "Client-server WebSocket architecture"
+      }
+    ]
+  },
+  
+  "content": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "I recently undertook the challenge of building a real-time chat application to deepen my understanding of WebSocket technology and event-driven architecture. This post walks through my approach, challenges faced, and solutions implemented."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Project Overview"
+      },
+      {
+        "type": "paragraph",
+        "text": "The goal was to create a scalable chat platform where multiple users could communicate in real-time with minimal latency. The application needed to handle concurrent connections, maintain message history, and provide a responsive user interface."
+      },
+      {
+        "type": "image",
+        "imageId": "img-0",
+        "caption": "User-friendly login screen"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Technical Stack"
+      },
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          "Backend: Node.js with Express.js framework",
+          "Real-time Communication: Socket.IO library",
+          "Frontend: React with TypeScript",
+          "Database: MongoDB for message persistence",
+          "Deployment: AWS EC2 instances"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Key Features Implemented"
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          "User authentication with JWT tokens",
+          "Real-time message delivery via WebSockets",
+          "User presence indicators (online/offline status)",
+          "Message history retrieval and pagination",
+          "Private messaging between users",
+          "Chat room creation and management"
+        ]
+      },
+      {
+        "type": "image",
+        "imageId": "img-1",
+        "caption": "Chat interface with message history"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Challenges & Solutions"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Challenge 1: Message Ordering"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ensuring messages arrived in the correct order across distributed clients was non-trivial. Different clients might receive messages at slightly different times, and the server needed a reliable source of truth."
+      },
+      {
+        "type": "paragraph",
+        "text": "Solution: I implemented server-side message sequencing using timestamps and sequence numbers. Each message is assigned a unique sequence ID on the server, which clients use to request missing messages and maintain proper ordering."
+      },
+      {
+        "type": "code",
+        "language": "javascript",
+        "text": "// Server-side message handling\nlet messageSequence = 0;\n\nsocket.on('new-message', (data) => {\n  messageSequence++;\n  const message = {\n    id: messageSequence,\n    content: data.content,\n    userId: socket.userId,\n    timestamp: Date.now(),\n    roomId: data.roomId\n  };\n  \n  // Save to database\n  saveMessage(message);\n  \n  // Broadcast to room\n  io.to(data.roomId).emit('message', message);\n});"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Challenge 2: Scalability"
+      },
+      {
+        "type": "paragraph",
+        "text": "The initial implementation worked well for a small number of users, but performance degraded significantly with hundreds of concurrent connections. The server was broadcasting all messages to all users indiscriminately."
+      },
+      {
+        "type": "paragraph",
+        "text": "Solution: I implemented room-based broadcasting so messages are only sent to users in the relevant chat room. Additionally, I added connection pooling and optimized database queries. For production deployments, I set up multiple server instances with Redis for cross-instance communication."
+      },
+      {
+        "type": "image",
+        "imageId": "img-2",
+        "caption": "System architecture with load balancing"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Results & Learnings"
+      },
+      {
+        "type": "paragraph",
+        "text": "The final application successfully handles 500+ concurrent users with sub-100ms message delivery latency. Through this project, I gained valuable experience with:"
+      },
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          "WebSocket protocols and real-time communication patterns",
+          "Server optimization and horizontal scaling",
+          "Database indexing and query optimization",
+          "Error handling and reconnection logic",
+          "Testing real-time applications"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Conclusion"
+      },
+      {
+        "type": "paragraph",
+        "text": "Building a real-time chat application proved to be an excellent learning experience. It challenged me to think about system design, performance optimization, and user experience in new ways. The project has inspired me to explore other real-time applications like collaborative document editing and live notifications."
+      },
+      {
+        "type": "paragraph",
+        "text": "If you're interested in the code or want to try the application, check out the GitHub repository linked below. Feel free to reach out if you have any questions!"
+      },
+      {
+        "type": "link",
+        "text": "View the full source code on GitHub",
+        "href": "https://github.com/bakabea5t/realtime-chat"
+      }
+    ]
+  },
+  
+  "metadata": {
+    "authorNotes": "First major project showcasing real-time systems knowledge",
+    "status": "published",
+    "lastModified": "2025-02-05T10:30:00Z"
+  }
+}

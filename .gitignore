@@ -1,0 +1,33 @@
+# Author tool - local development only
+/author/
+
+# Post generation scripts and helpers - local only
+/scripts/
+/AI_mds/
+package.json
+package-lock.json
+
+# Temporary work files
+/author-data/
+*.draft
+*.tmp
+color_pallete.txt
+
+# System files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Node modules
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Environment
+.env
+.env.local
