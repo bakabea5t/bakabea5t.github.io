@@ -440,8 +440,18 @@ ${this.escapeHtml(block.text)}
         const images = this.currentGalleryImages || this.loadedGalleryImages;
         if (!images || images.length === 0) return;
         const img = images[this.currentImageIndex];
-        document.getElementById('gallery-img').src = img.src;
-        document.getElementById('gallery-img').alt = img.alt;
+        const galleryImg = document.getElementById('gallery-img');
+        
+        // Add fallback handler for gallery images (only fallback once)
+        galleryImg.onerror = () => {
+            if (!galleryImg.hasAttribute('data-fallback-tried')) {
+                galleryImg.setAttribute('data-fallback-tried', 'true');
+                galleryImg.src = this.fallbackDataURI;
+            }
+        };
+        
+        galleryImg.src = img.src;
+        galleryImg.alt = img.alt;
         document.getElementById('gallery-caption').textContent = img.caption || '';
         document.getElementById('gallery-current').textContent = this.currentImageIndex + 1;
         document.getElementById('gallery-total').textContent = images.length;

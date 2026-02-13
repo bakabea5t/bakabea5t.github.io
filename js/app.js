@@ -230,106 +230,54 @@ async function renderContent() {
 
 // Render home view
 function renderHome(container) {
+    const { accomplishmentsSection, workHistorySection } = timelineRenderer.buildHomeSection();
+    
     container.innerHTML = `
-        <section id="about">
-            <div class="about-content">
-                <div class="about-text">
-                    <h1>Jaden Vaught</h1>
-                    <h2>Software Developer & Problem Solver</h2>
-                    <p>
-                        Welcome to my digital portfolio. I'm a passionate software developer with a love for
-                        creating elegant solutions to complex problems. My journey in technology has been driven
-                        by curiosity and a commitment to continuous learning.
-                    </p>
-                    <p>
-                        I specialize in building web applications and enjoy working with modern technologies
-                        to bring ideas to life. Whether it's crafting intuitive user interfaces or architecting
-                        robust backend systems, I approach each project with attention to detail and a focus
-                        on user experience.
-                    </p>
-                    <div class="about-highlights">
-                        <div class="highlight">
-                            <h3>Full-Stack Development</h3>
-                            <p>Building end-to-end web applications with modern frameworks</p>
+        <div id="home-top-section">
+            <section id="about">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h1>Jaden Vaught</h1>
+                        <h2>Software Developer & Problem Solver</h2>
+                        <p>
+                            Welcome to my digital portfolio. I'm a passionate software developer with a love for
+                            creating elegant solutions to complex problems. My journey in technology has been driven
+                            by curiosity and a commitment to continuous learning.
+                        </p>
+                        <p>
+                            I specialize in building web applications and enjoy working with modern technologies
+                            to bring ideas to life. Whether it's crafting intuitive user interfaces or architecting
+                            robust backend systems, I approach each project with attention to detail and a focus
+                            on user experience.
+                        </p>
+                        <div class="about-highlights">
+                            <div class="highlight">
+                                <h3>Full-Stack Development</h3>
+                                <p>Building end-to-end web applications with modern frameworks</p>
+                            </div>
+                            <div class="highlight">
+                                <h3>Problem Solving</h3>
+                                <p>Tackling complex challenges with creative and efficient solutions</p>
+                            </div>
+                            <div class="highlight">
+                                <h3>Continuous Learning</h3>
+                                <p>Always exploring new technologies and best practices</p>
+                            </div>
                         </div>
-                        <div class="highlight">
-                            <h3>Problem Solving</h3>
-                            <p>Tackling complex challenges with creative and efficient solutions</p>
-                        </div>
-                        <div class="highlight">
-                            <h3>Continuous Learning</h3>
-                            <p>Always exploring new technologies and best practices</p>
-                        </div>
+                    </div>
+                    <div class="about-image">
+                        <img src="img/Pondering.JPG" alt="Jaden Vaught - Software Developer" />
                     </div>
                 </div>
-                <div class="about-image">
-                    <img src="img/Pondering.JPG" alt="Jaden Vaught - Software Developer" />
-                </div>
-            </div>
-        </section>
-        <section id="timeline">
-            <h2>My Journey</h2>
-            <div class="timeline-container">
-                <div class="timeline-line"></div>
-                <div class="timeline-events">
-                    <div class="timeline-event" data-year="2024">
-                        <div class="timeline-content">
-                            <div class="timeline-date">2024 - Present</div>
-                            <h3>Freelance Developer</h3>
-                            <p>Building custom web applications and solutions for clients. Specializing in modern JavaScript frameworks and responsive design.</p>
-                            <div class="timeline-tags">
-                                <span class="timeline-tag">React</span>
-                                <span class="timeline-tag">Node.js</span>
-                                <span class="timeline-tag">Full-Stack</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="timeline-event" data-year="2023">
-                        <div class="timeline-content">
-                            <div class="timeline-date">2023</div>
-                            <h3>Portfolio Website Launch</h3>
-                            <p>Created and deployed this personal portfolio website showcasing my projects and skills using vanilla JavaScript and modern CSS.</p>
-                            <div class="timeline-tags">
-                                <span class="timeline-tag">JavaScript</span>
-                                <span class="timeline-tag">CSS</span>
-                                <span class="timeline-tag">GitHub Pages</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="timeline-event" data-year="2022">
-                        <div class="timeline-content">
-                            <div class="timeline-date">2020 - 2022</div>
-                            <h3>Computer Science Studies</h3>
-                            <p>Completed coursework in algorithms, data structures, web development, and software engineering principles.</p>
-                            <div class="timeline-tags">
-                                <span class="timeline-tag">Algorithms</span>
-                                <span class="timeline-tag">Data Structures</span>
-                                <span class="timeline-tag">Web Dev</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="timeline-event" data-year="2020">
-                        <div class="timeline-content">
-                            <div class="timeline-date">2020</div>
-                            <h3>Started Coding Journey</h3>
-                            <p>Began learning programming through online resources and personal projects. Built first web applications and discovered passion for development.</p>
-                            <div class="timeline-tags">
-                                <span class="timeline-tag">HTML</span>
-                                <span class="timeline-tag">CSS</span>
-                                <span class="timeline-tag">JavaScript</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="featured-posts">
-            <h3>Featured Projects</h3>
-            <div id="featured-posts-container"></div>
-        </section>
+            </section>
+            ${workHistorySection}
+        </div>
     `;
-    displayFeaturedPosts();
-    initTimeline();
+    
+    // Add accomplishments timeline
+    container.innerHTML += accomplishmentsSection;
+    
+    timelineRenderer.initTimeline();
 }
 
 // Render posts list view
@@ -338,9 +286,20 @@ function renderPostsList(container) {
     window.postFilterUI.init(posts);
     
     container.innerHTML = `
-        <section id="posts-section">
+        <div id="posts-header">
+            <div class="posts-title-area">
+                <h1>Posts</h1>
+                <p class="posts-description">Explore my blog posts, tutorials, and articles on software development and technology</p>
+            </div>
+        </div>
+        <div id="posts-filter-area">
             ${window.postFilterUI.buildUI()}
+        </div>
+        <section id="posts-section">
             <div id="posts-container"></div>
+            <div id="posts-scroll-indicator" class="posts-scroll-indicator" style="display: none;">
+                <span>📜 Scroll to see more posts</span>
+            </div>
         </section>
     `;
     
@@ -379,7 +338,7 @@ function createPostListItemHTML(post) {
         <article class="post-item" role="link" tabindex="0" onclick="navigateTo('posts', '${post.id}')" onkeydown="if(event.key === 'Enter') navigateTo('posts', '${post.id}')">
             ${imageUrl ? `
                 <div class="post-item-image-square">
-                    <img src="${imageUrl}" alt="${post.title}" loading="lazy" />
+                    <img src="${imageUrl}" alt="${post.title}" loading="lazy" onerror="if(!this.hasAttribute('data-fallback-tried')){this.setAttribute('data-fallback-tried','true');this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2214%22 fill=%22%23999%22%3EImage Unavailable%3C/text%3E%3C/svg%3E';}" />
                 </div>
             ` : ''}
             <div class="post-item-content">
@@ -414,6 +373,36 @@ function displayPosts(postsToDisplay, viewMode) {
     
     // Use cached HTML for each post
     container.innerHTML = postsToDisplay.map(post => createPostListItemHTML(post)).join('');
+    
+    // Check for overflow and show scroll indicator if needed
+    checkPostsContainerOverflow();
+}
+
+// Check if posts container exceeds available space and show scroll indicator
+function checkPostsContainerOverflow() {
+    const container = document.getElementById('posts-container');
+    if (!container) return;
+    
+    // Use setTimeout to ensure CSS has fully reflowed after class change
+    // This is important for grid vs list view calculations
+    setTimeout(() => {
+        const hasOverflow = container.scrollHeight > container.clientHeight;
+        
+        // Log overflow status for debugging
+        console.log('Posts Container Overflow Check:', {
+            scrollHeight: container.scrollHeight,
+            clientHeight: container.clientHeight,
+            hasOverflow: hasOverflow,
+            overflowAmount: hasOverflow ? container.scrollHeight - container.clientHeight : 0,
+            viewMode: container.className // Show which view mode is active
+        });
+        
+        // Show/hide scroll indicator
+        const scrollIndicator = document.getElementById('posts-scroll-indicator');
+        if (scrollIndicator) {
+            scrollIndicator.style.display = hasOverflow ? 'flex' : 'none';
+        }
+    }, 100); // 100ms delay ensures layout reflow is complete
 }
 
 // Render individual post
@@ -603,6 +592,7 @@ function initTimeline() {
 // Initialize app
 async function init() {
     await loadPosts();
+    await timelineRenderer.loadTimelineData();
     buildHeader();
     buildFooter();
 
