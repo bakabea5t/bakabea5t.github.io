@@ -1,9 +1,105 @@
 // app.js - Single-page portfolio application
 
+/*
+ * DOM CACHING STRATEGY:
+ * 
+ * To optimize performance and avoid re-fetching/re-rendering:
+ * 1. Post Details: Full rendered post pages cached after first view
+ * 2. Post List Items: Individual post cards cached for lists
+ * 3. Images: All images preloaded and cached on initial load
+ * 4. Filter Results: Filter operations cached by filter state
+ * 
+ * Use window.cacheManager.stats() in console to view cache statistics
+ */
+
 // Global state
 let posts = [];
 let currentView = 'home';
 let navigationHistory = []; // Track navigation history for back button
+
+// DOM Cache for rendered content
+const domCache = {
+    postDetails: new Map(), // Cache full post detail pages
+    postListItems: new Map(), // Cache post list items HTML
+    images: new Map() // Cache loaded Image objects
+};
+
+// Preload and cache an image
+function preloadImage(src) {
+    if (!src || domCache.images.has(src)) {
+        return Promise.resolve(domCache.images.get(src));
+    }
+    
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => {
+            domCache.images.set(src, img);
+            resolve(img);
+        };
+        img.onerror = reject;
+        img.src = src;
+    });
+}
+
+// Preload all images from posts
+function preloadPostImages() {
+    const imagesToLoad = [];
+    
+    posts.forEach(post => {
+        // Thumbnail/main image
+        if (post.image) {
+            imagesToLoad.push(preloadImage(post.image));
+        }
+        
+        // Gallery images
+        if (post.images?.gallery) {
+            post.images.gallery.forEach(img => {
+                imagesToLoad.push(preloadImage(img.src));
+            });
+        } else if (post.gallery) {
+            post.gallery.forEach(img => {
+                imagesToLoad.push(preloadImage(img.src));
+            });
+        }
+    });
+    
+    return Promise.allSettled(imagesToLoad);
+}
+
+// Clear cache for a specific post
+function clearPostCache(postId) {
+    domCache.postDetails.delete(postId);
+    domCache.postListItems.delete(postId);
+}
+
+// Clear all DOM cache
+function clearAllCache() {
+    domCache.postDetails.clear();
+    domCache.postListItems.clear();
+    // Keep image cache as images are reusable
+}
+
+// Get cache statistics (useful for debugging)
+function getCacheStats() {
+    return {
+        postDetails: domCache.postDetails.size,
+        postListItems: domCache.postListItems.size,
+        images: domCache.images.size,
+        totalMemory: {
+            postDetails: `${domCache.postDetails.size} posts cached`,
+            postListItems: `${domCache.postListItems.size} list items cached`,
+            images: `${domCache.images.size} images preloaded`
+        }
+    };
+}
+
+// Expose cache management globally (for debugging in console)
+window.cacheManager = {
+    clear: clearAllCache,
+    clearPost: clearPostCache,
+    stats: getCacheStats,
+    preloadImages: preloadPostImages
+};
 
 // Load posts data
 async function loadPosts() {
@@ -26,6 +122,11 @@ async function loadPosts() {
         
         // Filter out failed loads and sort by date
         posts = posts.filter(p => p !== null).sort((a, b) => new Date(b.date) - new Date(a.date));
+        
+        // Preload images in background
+        preloadPostImages().then(() => {
+            console.log('Post images preloaded');
+        });
         
         return posts;
     } catch (error) {
@@ -107,7 +208,7 @@ function getCurrentRoute() {
 }
 
 // Render content based on current view
-function renderContent() {
+async function renderContent() {
     const content = document.getElementById('content');
     const route = getCurrentRoute();
 
@@ -117,7 +218,7 @@ function renderContent() {
             break;
         case 'posts':
             if (route.postId) {
-                renderPostDetail(content, route.postId);
+                await renderPostDetail(content, route.postId);
             } else {
                 renderPostsList(content);
             }
@@ -233,25 +334,101 @@ function renderHome(container) {
 
 // Render posts list view
 function renderPostsList(container) {
+    // Initialize filter UI with posts
+    window.postFilterUI.init(posts);
+    
     container.innerHTML = `
-        <section id="projects-intro">
-            <h2>My Projects</h2>
-            <p>Here are some projects I've worked on, focusing on what I learned from each.</p>
-            <button id="view-toggle">Switch to List View</button>
-        </section>
         <section id="posts-section">
+            ${window.postFilterUI.buildUI()}
             <div id="posts-container"></div>
         </section>
     `;
-    displayAllPosts();
-    setupViewToggle();
+    
+    // Display initial posts
+    const { filteredPosts, filterState } = window.postFilterUI.getState();
+    displayPosts(filteredPosts, filterState.viewMode);
+    
+    // Setup filter listeners with callback
+    window.postFilterUI.setupListeners((filteredPosts, filterState) => {
+        displayPosts(filteredPosts, filterState.viewMode);
+    });
+}
+
+// Create cached post list item HTML
+function createPostListItemHTML(post) {
+    // Check cache first
+    const cacheKey = `${post.id}-list`;
+    if (domCache.postListItems.has(cacheKey)) {
+        return domCache.postListItems.get(cacheKey);
+    }
+    
+    // Support both old format (post.images.gallery) and new format (post.gallery or post.image)
+    let imageUrl = null;
+    if (post.image) {
+        imageUrl = post.image;
+    } else if (post.images && post.images.gallery && post.images.gallery.length > 0) {
+        imageUrl = post.images.gallery[0].src;
+    } else if (post.gallery && post.gallery.length > 0) {
+        imageUrl = post.gallery[0].src;
+    }
+
+    // Support both formats for description
+    const description = post.shortDescription || '';
+
+    const html = `
+        <article class="post-item" role="link" tabindex="0" onclick="navigateTo('posts', '${post.id}')" onkeydown="if(event.key === 'Enter') navigateTo('posts', '${post.id}')">
+            ${imageUrl ? `
+                <div class="post-item-image-square">
+                    <img src="${imageUrl}" alt="${post.title}" loading="lazy" />
+                </div>
+            ` : ''}
+            <div class="post-item-content">
+                <h3><a href="#posts/${post.id}" onclick="event.stopPropagation(); navigateTo('posts', '${post.id}')">${post.title}</a></h3>
+                <time datetime="${post.date}">${new Date(post.date).toLocaleDateString()}</time>
+                ${description ? `<p>${description}</p>` : ''}
+                ${post.tags ? `<div class="tags">${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>` : ''}
+            </div>
+        </article>
+    `;
+    
+    // Cache the HTML
+    domCache.postListItems.set(cacheKey, html);
+    return html;
+}
+
+// Display posts in grid or list view
+function displayPosts(postsToDisplay, viewMode) {
+    const container = document.getElementById('posts-container');
+    if (!container) return;
+    
+    container.className = `posts-${viewMode}`;
+    
+    if (postsToDisplay.length === 0) {
+        container.innerHTML = `
+            <div class="no-results">
+                <p>No projects found.</p>
+            </div>
+        `;
+        return;
+    }
+    
+    // Use cached HTML for each post
+    container.innerHTML = postsToDisplay.map(post => createPostListItemHTML(post)).join('');
 }
 
 // Render individual post
-function renderPostDetail(container, postId) {
+async function renderPostDetail(container, postId) {
     const post = posts.find(p => p.id === postId);
     if (!post) {
         container.innerHTML = '<p>Post not found.</p>';
+        return;
+    }
+
+    // Check if we have cached rendered content
+    if (domCache.postDetails.has(postId)) {
+        const cachedContent = domCache.postDetails.get(postId);
+        container.innerHTML = '';
+        container.appendChild(cachedContent.cloneNode(true));
         return;
     }
 
@@ -265,10 +442,17 @@ function renderPostDetail(container, postId) {
 
     // Use the PostRenderer to render the post content
     if (window.postRenderer) {
-        window.postRenderer.renderPost(
+        await window.postRenderer.renderPost(
             document.getElementById('post-container'),
             post
         );
+        
+        // Cache the entire rendered container after rendering completes
+        // This allows images and dynamic content to be part of the cache
+        setTimeout(() => {
+            const containerClone = container.cloneNode(true);
+            domCache.postDetails.set(postId, containerClone);
+        }, 150);
     } else {
         // Fallback rendering if postRenderer is not loaded
         console.warn('PostRenderer not loaded, using fallback rendering');
