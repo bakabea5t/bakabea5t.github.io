@@ -1,0 +1,91 @@
+{
+  "accomplishments": [
+    {
+      "id": "started-blog-2024",
+      "title": "Started Tech Blog",
+      "month": "May",
+      "year": 2024,
+      "description": "Launched a technical blog to share knowledge and learning experiences."
+    },
+    {
+      "id": "freelance-2024",
+      "title": "First Freelance Project",
+      "month": "January",
+      "year": 2024,
+      "description": "Completed first client project building custom web application."
+    },
+    {
+      "id": "contributed-opensource-2023",
+      "title": "Open Source Contribution",
+      "month": "August",
+      "year": 2023,
+      "description": "Made first contribution to popular open source JavaScript library."
+    },
+    {
+      "id": "portfolio-launch-2023",
+      "title": "Portfolio Website Launch",
+      "month": "December",
+      "year": 2023,
+      "description": "Deployed personal portfolio showcasing projects and skills."
+    },
+    {
+      "id": "learned-react-2021",
+      "title": "Mastered React",
+      "month": "September",
+      "year": 2021,
+      "description": "Deep dive into React with state management and hooks."
+    },
+    {
+      "id": "cs-studies-2020-2022",
+      "title": "Completed CS Studies",
+      "month": "June",
+      "year": 2022,
+      "description": "Finished coursework in algorithms, data structures, and web development."
+    },
+    {
+      "id": "coding-start-2020",
+      "title": "Started Coding",
+      "month": "March",
+      "year": 2020,
+      "description": "Began learning programming through online resources and projects."
+    }
+  ],
+  "workHistory": [
+    {
+      "id": "freelance-dev-2024",
+      "position": "Freelance Developer",
+      "company": "Self-Employed",
+      "startMonth": "January",
+      "startYear": 2024,
+      "endMonth": null,
+      "endYear": null,
+      "current": true,
+      "description": "Building custom web applications and solutions for clients. Specializing in modern JavaScript frameworks and responsive design.",
+      "responsibilities": [
+        "Full-stack web development with React and Node.js",
+        "Client communication and project management",
+        "Database design and optimization",
+        "Deployment and maintenance"
+      ],
+      "technologies": ["React", "Node.js", "JavaScript", "CSS", "MongoDB", "PostgreSQL"]
+    },
+    {
+      "id": "junior-dev-2023",
+      "position": "Junior Developer",
+      "company": "Tech Startup",
+      "startMonth": "June",
+      "startYear": 2023,
+      "endMonth": "December",
+      "endYear": 2023,
+      "current": false,
+      "description": "Worked on web application development and bug fixes.",
+      "responsibilities": [
+        "Frontend development with React",
+        "API integration and testing",
+        "Code reviews and documentation"
+      ],
+      "technologies": ["React", "JavaScript", "REST APIs", "Jest"]
+    }
+  ]
+}
+
