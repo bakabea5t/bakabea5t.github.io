@@ -238,35 +238,59 @@ function renderHome(container) {
                 <div class="about-content">
                     <div class="about-text">
                         <h1>Jaden Vaught</h1>
-                        <h2>Software Developer & Problem Solver</h2>
+                        <h2>Software Developer</h2>
                         <p>
-                            Welcome to my digital portfolio. I'm a passionate software developer with a love for
-                            creating elegant solutions to complex problems. My journey in technology has been driven
-                            by curiosity and a commitment to continuous learning.
+                            Welcome to my digital portfolio. Here you can see my diverse range of projects and accomplishments.
+                            I am currently engaged in a full-stack implmentation utlizing AWS services to build a fedRAMP compliant application.
+                            However i strive to continuously expand my skills and hope to utlize my experience in gooverment compliance to help
+                            design and build secure and compliant applications in the future specifically for the EV industry.
                         </p>
                         <p>
-                            I specialize in building web applications and enjoy working with modern technologies
-                            to bring ideas to life. Whether it's crafting intuitive user interfaces or architecting
-                            robust backend systems, I approach each project with attention to detail and a focus
-                            on user experience.
+                            My biggest passion is finding optmial solutions to complex problems and building applications that make a positive 
+                            impact. I am always eager to learn new technologies and take on new challenges. As i have the most fun when i am 
+                            learning and building at the same time.
                         </p>
-                        <div class="about-highlights">
-                            <div class="highlight">
-                                <h3>Full-Stack Development</h3>
-                                <p>Building end-to-end web applications with modern frameworks</p>
-                            </div>
-                            <div class="highlight">
-                                <h3>Problem Solving</h3>
-                                <p>Tackling complex challenges with creative and efficient solutions</p>
-                            </div>
-                            <div class="highlight">
-                                <h3>Continuous Learning</h3>
-                                <p>Always exploring new technologies and best practices</p>
-                            </div>
-                        </div>
                     </div>
                     <div class="about-image">
                         <img src="img/Pondering.JPG" alt="Jaden Vaught - Software Developer" />
+                        <div class="education-section">
+                            <div class="education-header">
+                                <object data="img/Kentucky_Wildcats_logo.svg" type="image/svg+xml" class="education-logo" style="width: 32px; height: 32px; vertical-align: middle;"></object>
+                                <h3>Education</h3>
+                            </div>
+                            <div class="education-badges">
+                                <div class="badge">
+                                    <i class="fas fa-university"></i>
+                                    <span class="badge-text">University of Kentucky</span>
+                                </div>
+                                <div class="badge">
+                                    <i class="fas fa-scroll"></i>
+                                    <span class="badge-text">Bachelor's of Computer Science</span>
+                                </div>
+                                <div class="badge">
+                                    <i class="fas fa-book"></i>
+                                    <span class="badge-text">Minor in Mathematics</span>
+                                </div>
+                                <div class="badge">
+                                    <i class="fas fa-award"></i>
+                                    <span class="badge-text">Cybersecurity Certificate</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-highlights">
+                    <div class="highlight">
+                        <h3>Full-Stack Development</h3>
+                        <p>Building end-to-end web applications with modern frameworks</p>
+                    </div>
+                    <div class="highlight">
+                        <h3>Problem Solving</h3>
+                        <p>Tackling complex challenges with creative and efficient solutions</p>
+                    </div>
+                    <div class="highlight">
+                        <h3>Continuous Learning</h3>
+                        <p>Always exploring new technologies and best practices</p>
                     </div>
                 </div>
             </section>

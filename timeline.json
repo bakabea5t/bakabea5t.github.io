@@ -5,86 +5,104 @@
       "title": "Started Tech Blog",
       "month": "May",
       "year": 2024,
-      "description": "Launched a technical blog to share knowledge and learning experiences."
+      "description": "Launched a technical blog to share knowledge and learning experiences.",
+      "postId": "building-real-time-chat-app"
     },
     {
       "id": "freelance-2024",
       "title": "First Freelance Project",
       "month": "January",
       "year": 2024,
-      "description": "Completed first client project building custom web application."
+      "description": "Completed first client project building custom web application.",
+      "postId": null
     },
     {
       "id": "contributed-opensource-2023",
       "title": "Open Source Contribution",
       "month": "August",
       "year": 2023,
-      "description": "Made first contribution to popular open source JavaScript library."
+      "description": "Made first contribution to popular open source JavaScript library.",
+      "postId": null
     },
     {
       "id": "portfolio-launch-2023",
       "title": "Portfolio Website Launch",
       "month": "December",
       "year": 2023,
-      "description": "Deployed personal portfolio showcasing projects and skills."
+      "description": "Deployed personal portfolio showcasing projects and skills.",
+      "postId": null
     },
     {
       "id": "learned-react-2021",
       "title": "Mastered React",
       "month": "September",
       "year": 2021,
-      "description": "Deep dive into React with state management and hooks."
-    },
-    {
-      "id": "cs-studies-2020-2022",
-      "title": "Completed CS Studies",
-      "month": "June",
-      "year": 2022,
-      "description": "Finished coursework in algorithms, data structures, and web development."
-    },
-    {
-      "id": "coding-start-2020",
-      "title": "Started Coding",
-      "month": "March",
-      "year": 2020,
-      "description": "Began learning programming through online resources and projects."
+      "description": "Deep dive into React with state management and hooks.",
+      "postId": null
     }
   ],
   "workHistory": [
     {
-      "id": "freelance-dev-2024",
-      "position": "Freelance Developer",
-      "company": "Self-Employed",
-      "startMonth": "January",
+      "id": "internship-2024",
+      "position": "Solutions Intern",
+      "company": "cBEYONData",
+      "startMonth": "May",
       "startYear": 2024,
-      "endMonth": null,
-      "endYear": null,
-      "current": true,
-      "description": "Building custom web applications and solutions for clients. Specializing in modern JavaScript frameworks and responsive design.",
+      "endMonth": "May",
+      "endYear": 2025,
+      "current": false,
+      "description": "Worked on developing a prototype Anaplan solution and implementing the BAS solution in SAP SAC for the USDA.",
       "responsibilities": [
-        "Full-stack web development with React and Node.js",
-        "Client communication and project management",
-        "Database design and optimization",
-        "Deployment and maintenance"
+        "Designed, Developed, and Documented a working prototype Anaplan solution",
+        "Became proficent in SAP SAC.",
+        "Worked on a agile implmenentation of the BAS solution in SAP SAC for the USDA"
       ],
-      "technologies": ["React", "Node.js", "JavaScript", "CSS", "MongoDB", "PostgreSQL"]
+      "technologies": ["Anaplan", "SAP SAC", "JavaScript", "SQL", "agile"],
+      "projects": [
+        {
+          "id": "bas-anaplan-prototype",
+          "title": "BAS Anaplan Prototype",
+          "description": "Developed an Anaplan prototype to model the BAS workflow and integrate with SAP SAC dashboards.",
+          "technologies": ["Anaplan"],
+          "tags": ["prototype","dashboard", "demo"],
+          "postId": null
+        },
+        {
+          "id": "usda-bas-sap-sac",
+          "title": "USDA BAS SAP SAC Integration",
+          "description": "Worked in a agile team to implement the BAS solution in SAP SAC, creating dashboards and reports for the USDA",
+          "technologies": ["SAP SAC", "JavaScript", "agile"],
+          "tags": ["Federal Contract","dashboard", "reporting"],
+          "postId": null
+        }
+      ]
     },
     {
-      "id": "junior-dev-2023",
-      "position": "Junior Developer",
-      "company": "Tech Startup",
+      "id": "junior-dev-cBEYONData",
+      "position": "Junior Software Developer",
+      "company": "cBEYONData + SMX",
       "startMonth": "June",
-      "startYear": 2023,
-      "endMonth": "December",
-      "endYear": 2023,
-      "current": false,
+      "startYear": 2025,
+      "endMonth": "June",
+      "endYear": false,
+      "current": true,
       "description": "Worked on web application development and bug fixes.",
       "responsibilities": [
-        "Frontend development with React",
-        "API integration and testing",
+        "Full-stack devlopement of a fedRAMP compliant application with serverless AWS architecture",
+        "Desining authentication and authroizartion systems for the application",
         "Code reviews and documentation"
       ],
-      "technologies": ["React", "JavaScript", "REST APIs", "Jest"]
+      "technologies": ["node.js", "AWS", "REST APIs", "fedRAMP", "full-stack development"],
+      "projects": [
+        {
+          "id": "aws-cfoct-development",
+          "title": "FedRAMP Compliant Cloud Solution",
+          "description": "Built serverless features, authentication, and implemented business logic and front-end for a FedRAMP-aligned application.",
+          "technologies": ["Node.js", "AWS Lambda", "API Gateway", "Cognito", "DynamoDB", "Redshift serverless", "S3", "VPC", "IAM"],
+          "tags": ["serverless","security","full-stack"],
+          "postId": "building-real-time-chat-app"
+        }
+      ]
     }
   ]
 }

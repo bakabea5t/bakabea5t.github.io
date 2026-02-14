@@ -18,11 +18,15 @@
 
 /* CSS Custom Properties - Change these to update theme colors globally */
 :root {
-    --color-primary: #BB6279;        /* Pink/Rose - accents and highlights */
-    --color-dark: #2C3E50;           /* Dark Blue-Gray - text and headers */
-    --color-light: #FFFFFF;          /* White - backgrounds */
-    --color-accent: #BDC3C7;         /* Light Gray - borders and hover states */
-    
+    --color-primary: #BB6279;
+    /* Pink/Rose - accents and highlights */
+    --color-dark: #2C3E50;
+    /* Dark Blue-Gray - text and headers */
+    --color-light: #FFFFFF;
+    /* White - backgrounds */
+    --color-accent: #BDC3C7;
+    /* Light Gray - borders and hover states */
+
     /* Gradient definitions using custom properties */
     --gradient-main: linear-gradient(135deg, var(--color-dark) 0%, var(--color-primary) 100%);
     --gradient-reverse: linear-gradient(135deg, var(--color-primary) 0%, var(--color-dark) 100%);
@@ -63,18 +67,21 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--gradient-main); /* Dark to pink gradient */
+    background: var(--gradient-main);
+    /* Dark to pink gradient */
     color: var(--color-light);
     padding: 0.5rem 1rem;
     border-radius: 6px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 0.8rem;
-    border: 1px solid var(--color-accent); /* Light gray accent */
+    border: 1px solid var(--color-accent);
+    /* Light gray accent */
     flex-shrink: 0;
 }
 
 .site-name {
-    font-family: 'Courier New', monospace; /* Computer feel */
+    font-family: 'Courier New', monospace;
+    /* Computer feel */
     font-size: 1em;
     font-weight: bold;
     cursor: pointer;
@@ -82,7 +89,8 @@ body {
 }
 
 .site-name:hover {
-    color: var(--color-accent); /* Light gray */
+    color: var(--color-accent);
+    /* Light gray */
 }
 
 nav {
@@ -173,12 +181,15 @@ footer {
     background: var(--color-light);
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-family: 'Courier New', monospace;
     color: var(--color-dark);
 }
 
-h2, h3 {
+h2,
+h3 {
     margin-bottom: 20px;
     border-bottom: 2px solid var(--color-primary);
     padding-bottom: 10px;
@@ -235,7 +246,9 @@ h2, h3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0.5rem;
-    margin-top: 0.5rem;
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--color-accent);
 }
 
 .highlight {
@@ -285,6 +298,79 @@ h2, h3 {
 
 .about-image img:hover {
     transform: scale(1.05);
+}
+
+/* Education Section - Badges below profile image */
+.education-section {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.education-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+}
+
+.education-logo {
+    border: none;
+    background: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 10px;
+    block-size: 10px;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.education-section h3 {
+    font-size: 0.9em;
+    color: var(--color-primary);
+    margin: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+    font-weight: 600;
+}
+
+.education-badges {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--color-light);
+    border: 1px solid var(--color-accent);
+    border-radius: 6px;
+    padding: 0.5rem 0.7rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-size: 0.85em;
+}
+
+.badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    border-color: var(--color-primary);
+}
+
+.badge i {
+    font-size: 1.2em;
+    color: var(--color-primary);
+    width: 1.2em;
+    text-align: center;
+}
+
+.badge-text {
+    font-weight: 500;
+    color: var(--color-dark);
+    font-size: 0.85em;
 }
 
 /* Timeline Section */
@@ -343,13 +429,33 @@ h2, h3 {
     min-width: 150px;
 }
 
-.timeline-event:nth-child(1) { animation-delay: 0.1s; }
-.timeline-event:nth-child(2) { animation-delay: 0.2s; }
-.timeline-event:nth-child(3) { animation-delay: 0.3s; }
-.timeline-event:nth-child(4) { animation-delay: 0.4s; }
-.timeline-event:nth-child(5) { animation-delay: 0.5s; }
-.timeline-event:nth-child(6) { animation-delay: 0.6s; }
-.timeline-event:nth-child(7) { animation-delay: 0.7s; }
+.timeline-event:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.timeline-event:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.timeline-event:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.timeline-event:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.timeline-event:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.timeline-event:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+.timeline-event:nth-child(7) {
+    animation-delay: 0.7s;
+}
 
 .timeline-event:nth-child(even) .timeline-content {
     margin-top: 35px;
@@ -442,6 +548,186 @@ h2, h3 {
 
 .timeline-tag:hover {
     background: var(--color-dark);
+}
+
+/* NEW TIMELINE DESIGN - Expandable cards above bar */
+.timeline-container-new {
+    position: relative;
+    padding: 2rem 0 1rem;
+    margin: 2rem 0;
+}
+
+.timeline-items {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 0.5rem;
+    padding: 0 0.6rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+}
+
+.timeline-item {
+    position: relative;
+    flex: 0 0 auto;
+    min-width: 120px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.timeline-preview {
+    background: var(--color-light);
+    border: 1px solid var(--color-accent);
+    border-radius: 6px;
+    padding: 0.4rem 0.5rem;
+    text-align: center;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.timeline-preview:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 12px rgba(187, 98, 121, 0.2);
+}
+
+.timeline-dot {
+    width: 10px;
+    height: 10px;
+    background: var(--color-primary);
+    border: 2px solid var(--color-light);
+    border-radius: 50%;
+    margin: 0 auto 0.35rem;
+    box-shadow: 0 0 0 2px var(--color-dark);
+}
+
+.timeline-preview h4 {
+    color: var(--color-dark);
+    font-size: 0.9em;
+    margin: 0.5rem 0;
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+.timeline-year {
+    color: var(--color-primary);
+    font-size: 0.8em;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+}
+
+/* Expanded content - shown on hover */
+.timeline-expanded {
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-light);
+    border: 1px solid var(--color-primary);
+    border-radius: 6px;
+    padding: 0.6rem;
+    margin-bottom: 0.25rem;
+    min-width: 180px;
+    max-width: 320px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    pointer-events: none;
+    z-index: 10;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Expanded content - shown on hover or when active */
+.timeline-expanded {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-light);
+    border: 2px solid var(--color-primary);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    min-width: 200px;
+    max-width: 250px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 10;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Show on hover-active (natural hover with delay) */
+.timeline-item.hover-active .timeline-expanded {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Force-open via click - shows regardless */
+.timeline-item.active .timeline-expanded {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Keep expanded visible when hovering over it */
+.timeline-expanded:hover {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Prevent hover popups on other items when one is force-open */
+.timeline-items.has-active .timeline-item:not(.active).hover-active .timeline-expanded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.timeline-expanded h3 {
+    color: var(--color-dark);
+    font-size: 1em;
+    margin-bottom: 0.3rem;
+}
+
+.timeline-expanded .timeline-date {
+    color: var(--color-primary);
+    font-size: 0.85em;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.timeline-expanded .timeline-description {
+    color: var(--color-dark);
+    font-size: 0.85em;
+    line-height: 1.4;
+    margin-bottom: 0.8rem;
+}
+
+.timeline-post-link {
+    display: inline-block;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: 0.85em;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid var(--color-primary);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.timeline-post-link:hover {
+    background: var(--color-primary);
+    color: var(--color-light);
+}
+
+.timeline-bar {
+    display: none;
 }
 
 /* Timeline Selector */
@@ -550,7 +836,7 @@ h2, h3 {
     background: var(--color-light);
     border: 1px solid var(--color-accent);
     border-radius: 6px;
-    padding: 0.6rem;
+    padding: 0.4rem;
     transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
@@ -668,6 +954,168 @@ h2, h3 {
 }
 
 /* Timeline Badges */
+
+/* Work projects styling */
+.job-projects {
+    margin-top: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.36rem;
+}
+
+.job-project {
+    background: linear-gradient(180deg, rgba(187,98,121,0.02), rgba(44,62,80,0.01));
+    border: 1px solid var(--color-accent);
+    padding: 0.22rem 0.28rem;
+    border-radius: 6px;
+    position: relative;
+}
+
+.project-title {
+    font-size: 0.85em;
+    margin: 0 0 0.25rem 0;
+    color: var(--color-dark);
+}
+
+.project-desc {
+    font-size: 0.8em;
+    color: var(--color-dark);
+    margin-bottom: 0.4rem;
+}
+
+.project-tech {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.4rem;
+}
+
+.project-tech-tag {
+    background: var(--gradient-subtle);
+    color: var(--color-dark);
+    padding: 0.2rem 0.45rem;
+    border-radius: 4px;
+    font-size: 0.65em;
+    border: 1px solid var(--color-accent);
+}
+
+.project-tags {
+    margin-top: 0.35rem;
+}
+
+.project-tag {
+    display: inline-block;
+    background: var(--color-primary);
+    color: var(--color-light);
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.65em;
+    margin-right: 0.35rem;
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 0.4rem;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Compact single-line meta chips */
+.project-meta {
+    display: flex;
+    gap: 0.28rem;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-top: 0.25rem;
+}
+
+.project-chip {
+    display: inline-block;
+    padding: 0.14rem 0.32rem;
+    font-size: 0.62em;
+    border-radius: 10px;
+    background: var(--gradient-subtle);
+    color: var(--color-dark);
+    border: 1px solid var(--color-accent);
+    line-height: 1;
+}
+
+.project-more {
+    display: inline-block;
+    padding: 0.12rem 0.28rem;
+    font-size: 0.62em;
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+/* Collapsible description and link remain */
+.job-project .project-desc {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.28s ease, opacity 0.18s ease;
+    margin: 0;
+    font-size: 0.78em;
+}
+
+.job-project.expanded .project-desc {
+    max-height: 600px;
+    opacity: 1;
+    margin-top: 0.32rem;
+}
+
+.project-link { display: none; }
+.job-project.expanded .project-link { display: inline-block; }
+
+/* When a project is expanded, force the description into an absolute overlay so it doesn't push layout */
+.job-project.expanded .project-desc {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 0;
+    width: 340px;
+    max-width: calc(100vw - 40px);
+    background: var(--color-light);
+    border: 1px solid var(--color-accent);
+    padding: 0.6rem;
+    border-radius: 6px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    max-height: 60vh;
+    overflow: auto;
+    opacity: 1;
+}
+
+/* Legacy project-overlay styles removed; using css/comic-popup.css */
+
+/* Collapsible project details to keep work-history compact */
+.job-project .project-desc {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.28s ease, opacity 0.2s ease;
+    margin: 0;
+}
+
+.job-project.expanded .project-desc {
+    max-height: 400px;
+    opacity: 1;
+    margin-top: 0.4rem;
+}
+
+.project-link { display: none; }
+.job-project.expanded .project-link { display: inline-block; }
+
+/* Limit work history height to avoid layout gaps; make it scrollable when needed */
+.work-history-items {
+    /* Compact layout: no scrolling, keep items concise */
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
+    gap: 0.4rem;
+}
+
 .timeline-current-badge {
     display: inline-block;
     background: var(--color-primary);
@@ -691,8 +1139,15 @@ h2, h3 {
 }
 
 @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
 }
 
 @keyframes fadeInUp {
@@ -703,7 +1158,8 @@ h2, h3 {
 }
 
 /* Post cards and items - Clean cards */
-.post-card, .post-item {
+.post-card,
+.post-item {
     background: var(--color-light);
     border: 1px solid var(--color-accent);
     padding: 0.3rem;
@@ -716,7 +1172,8 @@ h2, h3 {
     height: 100%;
 }
 
-.post-card:hover, .post-item:hover {
+.post-card:hover,
+.post-item:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     border-color: var(--color-primary);
@@ -756,7 +1213,8 @@ h2, h3 {
     overflow: hidden;
 }
 
-.post-card h4, .post-item h3 {
+.post-card h4,
+.post-item h3 {
     margin-bottom: 0.1rem;
     font-family: 'Courier New', monospace;
     margin-top: 0;
@@ -764,13 +1222,15 @@ h2, h3 {
     line-height: 1.2;
 }
 
-.post-card h4 a, .post-item h3 a {
+.post-card h4 a,
+.post-item h3 a {
     text-decoration: none;
     color: var(--color-dark);
     transition: color 0.3s ease;
 }
 
-.post-card h4 a:hover, .post-item h3 a:hover {
+.post-card h4 a:hover,
+.post-item h3 a:hover {
     color: var(--color-primary);
 }
 
@@ -858,10 +1318,13 @@ time {
 }
 
 @keyframes pulse-scroll {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateX(-50%) scale(1);
         opacity: 1;
     }
+
     50% {
         transform: translateX(-50%) scale(1.05);
         opacity: 0.8;
@@ -1372,65 +1835,65 @@ footer a:hover {
     .filter-bar {
         gap: 0.5rem;
     }
-    
+
     #filter-search {
         flex: 1 1 100%;
         min-width: 100%;
     }
-    
+
     .filter-tags-dropdown {
         flex: 1;
     }
-    
+
     #filter-tags-btn {
         width: 100%;
     }
-    
-/* Posts page layout - header & filter pinned, grid scrolls */
-#posts-header {
-    background: var(--color-light);
-    border-bottom: 1px solid var(--color-accent);
-    padding: 0.8rem;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    flex-shrink: 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
 
-.posts-title-area h1 {
-    font-size: 1.8em;
-    margin-bottom: 0.3rem;
-    color: var(--color-dark);
-}
+    /* Posts page layout - header & filter pinned, grid scrolls */
+    #posts-header {
+        background: var(--color-light);
+        border-bottom: 1px solid var(--color-accent);
+        padding: 0.8rem;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        flex-shrink: 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
 
-.posts-description {
-    font-size: 0.8em;
-    color: var(--color-dark);
-    margin-bottom: 0;
-    font-style: italic;
-}
+    .posts-title-area h1 {
+        font-size: 1.8em;
+        margin-bottom: 0.3rem;
+        color: var(--color-dark);
+    }
 
-#posts-filter-area {
-    background: var(--color-light);
-    padding: 0.6rem 0.8rem;
-    border-bottom: 2px solid var(--color-accent);
-    position: sticky;
-    top: 0;
-    z-index: 9;
-    flex-shrink: 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
+    .posts-description {
+        font-size: 0.8em;
+        color: var(--color-dark);
+        margin-bottom: 0;
+        font-style: italic;
+    }
 
-#posts-section {
-    flex: 1;
-    min-height: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
+    #posts-filter-area {
+        background: var(--color-light);
+        padding: 0.6rem 0.8rem;
+        border-bottom: 2px solid var(--color-accent);
+        position: sticky;
+        top: 0;
+        z-index: 9;
+        flex-shrink: 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    #posts-section {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
 
 
 
@@ -1440,48 +1903,47 @@ footer a:hover {
         width: auto;
         min-width: auto;
     }
-    
+
     .filter-view-toggle,
     #filter-clear {
         margin-left: auto;
     }
-    
+
     /* Responsive posts layout */
     #posts-container.posts-grid {
         grid-template-columns: 1fr;
     }
-    
+
     #posts-container.posts-list .post-item {
         flex-direction: column;
     }
-    
+
     #posts-container.posts-list .post-item-image-square {
         width: 100%;
         height: 150px;
     }
-    
+
     /* Ensure header and filter don't take too much vertical space on small screens */
     #posts-header {
         padding: 0.5rem;
     }
-    
+
     .posts-title-area h1 {
         font-size: 1.3em;
         margin-bottom: 0.2rem;
     }
-    
+
     .posts-description {
         font-size: 0.7em;
     }
-    
+
     #posts-filter-area {
         padding: 0.4rem 0.5rem;
     }
-    
+
     .filter-bar {
         padding: 0.5rem;
         margin-bottom: 0.5rem;
         gap: 0.5rem;
     }
 }
-
