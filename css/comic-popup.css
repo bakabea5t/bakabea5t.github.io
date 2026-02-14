@@ -1,0 +1,139 @@
+/* Comic-style project overlay and bubble (used by timeline job project popups) */
+:root {
+    --comic-px: 4px;
+    --comic-white: #ffffff;
+    --comic-black: #000000;
+    --comic-shadow: rgba(0,0,0,0.12);
+}
+
+.project-overlay {
+    position: absolute;
+    z-index: 1200;
+    pointer-events: auto;
+    will-change: left, top, opacity;
+    animation: comicFadeIn 180ms ease;
+}
+
+/* Burst graphics removed; overlay content is simplified */
+
+.project-overlay .project-overlay-inner,
+.comic-bubble {
+    position: relative;
+    background: var(--comic-white);
+    color: var(--comic-black);
+    padding: 16px;
+    min-width: 220px;
+    max-width: 420px;
+    box-shadow:
+        0 -4px 0 var(--comic-white),
+        0 -8px 0 var(--comic-black),
+        4px 0 0 var(--comic-white),
+        8px 0 0 var(--comic-black),
+        0 4px 0 var(--comic-white),
+        0 8px 0 var(--comic-black),
+        4px 4px 6px var(--comic-shadow);
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    line-height: 1.3;
+    box-sizing: border-box;
+}
+
+.project-overlay .project-overlay-title {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.project-overlay .project-overlay-meta {
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+
+.project-overlay .project-overlay-desc {
+    font-size: 13px;
+    color: #222;
+}
+
+.project-overlay .project-overlay-link a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 8px;
+    border: 2px solid var(--comic-black);
+    background: var(--comic-white);
+    color: var(--comic-black);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+@keyframes comicFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Small-screen adjustments */
+@media (max-width: 640px) {
+    .project-overlay .project-overlay-inner,
+    .comic-bubble {
+        min-width: 180px;
+        max-width: calc(100vw - 24px);
+        padding: 12px;
+    }
+    .project-overlay .overlay-burst { display: none; }
+}
+
+/* Close button */
+.project-overlay .project-overlay-close {
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--comic-black);
+    background: var(--comic-white);
+    color: var(--comic-black);
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.project-overlay .project-overlay-close:focus {
+    outline: 3px solid rgba(0,0,0,0.12);
+}
+
+/* Speech-tail (pixel style) */
+.project-overlay[data-placement="above"]::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: var(--comic-white);
+    right: 22px;
+    bottom: -12px;
+    transform: rotate(45deg);
+    box-shadow:
+        0 0 0 2px var(--comic-black),
+        4px 4px 0 var(--comic-shadow);
+}
+
+.project-overlay[data-placement="below"]::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: var(--comic-white);
+    right: 22px;
+    top: -12px;
+    transform: rotate(225deg);
+    box-shadow:
+        0 0 0 2px var(--comic-black),
+        -4px -4px 0 var(--comic-shadow);
+}
+
+@media (max-width: 640px) {
+    .project-overlay::after { display: none; }
+}
